@@ -32,7 +32,7 @@ const fetchUserDetails = async <T, U>(
     if (formatData == null) {
       return res.json(result.data);
     }
-
+    res.setHeader('Cache-Control', 'max-age=900, s-maxage=900');
     return res.json(formatData(result.data));
   } catch (err) {
     console.error('Error: ', err);

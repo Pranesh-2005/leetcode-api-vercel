@@ -27,7 +27,7 @@ const fetchUserProfile = async (
     if (result.errors) {
       return res.send(result);
     }
-
+    res.setHeader('Cache-Control', 'max-age=900, s-maxage=900');
     return res.json(formatFunction(result.data));
   } catch (err) {
     console.error('Error: ', err);
