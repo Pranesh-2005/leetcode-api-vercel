@@ -21,7 +21,7 @@ export const fetchAllContests = async (res: Response, query: string) => {
     if (result.errors) {
       return res.send(result);
     }
-    res.setHeader('Cache-Control', 'max-age=900, s-maxage=900'); // Cache for 15 minutes
+    res.setHeader('Cache-Control', 'public, max-age=900, s-maxage=900, stale-while-revalidate=3600'); // Cache for 15 minutes
     return res.json(result.data);
   } catch (err) {
     console.error('Error: ', err);
@@ -56,7 +56,7 @@ export const fetchUpcomingContests = async (res: Response, query: string) => {
     const upcomingContests = allContests.filter(
       (contest: Contest) => contest.startTime > now,
     );
-
+    res.setHeader('Cache-Control', 'public, max-age=900, s-maxage=900, stale-while-revalidate=3600');
     return res.json({
       count: upcomingContests.length,
       contests: upcomingContests,

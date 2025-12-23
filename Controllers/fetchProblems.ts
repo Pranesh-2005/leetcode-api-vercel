@@ -47,7 +47,7 @@ const fetchProblems = async (
     if (result.errors) {
       return res.status(400).json(result.errors); // Return errors with a 400 status code
     }
-    res.setHeader('Cache-Control', 'max-age=900, s-maxage=900');
+    res.setHeader('Cache-Control', 'public, max-age=900, s-maxage=900, stale-while-revalidate=3600');
     return res.json(formatData(result.data));
   } catch (err) {
     console.error('Error: ', err);

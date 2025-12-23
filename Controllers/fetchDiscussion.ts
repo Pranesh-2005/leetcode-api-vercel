@@ -27,7 +27,7 @@ const fetchDiscussion = async (
     if (result.errors) {
       return res.send(result);
     }
-    res.setHeader('Cache-Control', 'max-age=900, s-maxage=900');
+    res.setHeader('Cache-Control', 'public, max-age=900, s-maxage=900, stale-while-revalidate=3600');
     return res.json(formatData(result.data));
   } catch (err) {
     console.error('Error: ', err);
