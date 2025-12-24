@@ -6,17 +6,17 @@ import * as leetcode from './leetCode';
 import type { FetchUserDataRequest } from './types';
 
 const app = express();
-// const cache = apicache.middleware;
+const cache = apicache.middleware;
 
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  limit: 150,
+  limit: 120,
   standardHeaders: 'draft-7',
   legacyHeaders: false,
   message: 'Too many request from this IP, try again in 1 hour',
 });
 
-// app.use(cache('15 minutes'));
+app.use(cache('15 minutes'));
 app.use(cors()); //enable all CORS request
 app.use(limiter); //limit to all API
 app.use((req: express.Request, _res: Response, next: NextFunction) => {
@@ -27,9 +27,9 @@ app.use((req: express.Request, _res: Response, next: NextFunction) => {
 app.get('/', (_req, res) => {
   res.json({
     apiOverview:
-      'Welcome to the Alfa-Leetcode-API! Alfa-Leetcode-Api is a custom solution born out of the need for a well-documented and detailed LeetCode API. This project is designed to provide developers with endpoints that offer insights into a user"s profile, badges, solved questions, contest details, contest history, submissions, and also daily questions, selected problem, list of problems.',
+      'Welcome to the Leetcode-API! This is a Vercel\'s  version of Alfa-Leetcode-Api is a custom solution born out of the need for a well-documented and detailed LeetCode API. This project is designed to provide developers with endpoints that offer insights into a user"s profile, badges, solved questions, contest details, contest history, submissions, and also daily questions, selected problem, list of problems.',
     apiEndpointsLink:
-      'https://github.com/alfaarghya/alfa-leetcode-api?tab=readme-ov-file#endpoints-',
+      'https://github.com/alfaarghya/leetcode-api-vercel?tab=readme-ov-file#endpoints-',
     routes: {
       userDetails: {
         description:
