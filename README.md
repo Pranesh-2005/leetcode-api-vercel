@@ -1,6 +1,6 @@
 ### V1
 
-<h1 align="center">alfa-leetcode-api</h1>
+<h1 align="center">alfa-leetcode-api (vercel Version)</h1>
 <div align="center">
 
 ### The API for retrieving your LeetCode profile & Problems statistics
